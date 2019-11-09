@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "outDir": "build/main",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "inlineSourceMap": true,
+    "strict": true /* Enable all strict type-checking options. */,
+    "lib": ["es2017"],
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "src/types"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/**"],
+  "compileOnSave": false
+}

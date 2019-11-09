@@ -17,7 +17,6 @@ Create an empty npm project,
 
 Fill in some information then we get a `package.json` file:
 
-
 ```json
 {
   "name": "ts-node-starter",
@@ -45,9 +44,9 @@ Fill in some information then we get a `package.json` file:
 
 Install `ts-node` and `typescript`,
 
-    npm install -D typescript ts-node
+    npm install -D typescript ts-node @types/node
 
-and add a script to your `package.json` like this:
+And add a `script` field to `package.json`:
 
 ```json
 {
@@ -57,7 +56,7 @@ and add a script to your `package.json` like this:
 }
 ```
 
-Finally we get a complete `package.json` file:
+Here is the complete `package.json` file:
 
 ```json
 {
@@ -104,3 +103,42 @@ console.log(`\t~ ${author.Name}`);
 ```
 
 Run this project by `npm start`, you'll see some greeting messages.
+
+There is another way, first compile typescript code to javascript code, then run it via `node`.
+
+Create a `tsconfig.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "outDir": "build/main",
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "declaration": true,
+    "inlineSourceMap": true,
+    "strict": true /* Enable all strict type-checking options. */,
+    "lib": ["es2017"],
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "src/types"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/**"],
+  "compileOnSave": false
+}
+```
+
+And add a command `build:main` in `package.json`:
+
+```json
+"build:main": "tsc -p tsconfig.json",
+```
+
+Now we can compile this project:
+
+    npm run build:main
+
+And run:
+
+    node ./build/main/cli/cli.js
